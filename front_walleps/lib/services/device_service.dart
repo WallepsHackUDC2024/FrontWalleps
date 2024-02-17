@@ -29,17 +29,27 @@ class DeviceService {
     }
   }
 
-  Future<Device> createDevice(Device device) async {
+  Future<bool> createDevice(int userId, Device device) async {
+    print('createDevice: $device userId: $userId');
+    final url = Uri.parse(baseUrl); // Asegúrate de que la URL sea correcta
+    final deviceData = device.toJson(); // Suponiendo que tienes este método en tu clase Device
+    final body = json.encode({
+      'user_id': userId,
+      ...deviceData,
+    });
+
     final response = await http.post(
-      Uri.parse(baseUrl),
+      url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: device.toJson(),
+      body: body,
     );
 
-    if (response.statusCode == 201) {
-      return Device.fromJson(json.decode(response.body));
+    print('createDevice response: ${response.body}');
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body)['success'];
     } else {
       throw Exception('Failed to create device');
     }

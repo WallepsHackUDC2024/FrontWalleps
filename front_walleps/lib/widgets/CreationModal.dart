@@ -2,8 +2,64 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:front_walleps/theme/themes.dart';
+import '../models/device.dart';
+import '../services/device_service.dart';
 
-class CreationModal extends StatelessWidget {
+class CreationModal extends StatefulWidget {
+  @override
+  _CreationModalState createState() => _CreationModalState();
+}
+
+class _CreationModalState extends State<CreationModal> {
+  final deviceTypeController = TextEditingController();
+  final brandController = TextEditingController();
+  final modelController = TextEditingController();
+  final efficiencyController = TextEditingController();
+  final weeklyUseController = TextEditingController();
+  final hourOfUseController = TextEditingController();
+  final useDurationController = TextEditingController();
+  String? selectedDeviceType;
+
+  @override
+  void dispose() {
+    deviceTypeController.dispose();
+    brandController.dispose();
+    modelController.dispose();
+    efficiencyController.dispose();
+    weeklyUseController.dispose();
+    hourOfUseController.dispose();
+    useDurationController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _addDevice() async {
+    // Aquí deberías construir el objeto Device con los datos del formulario
+    int userId = 1; // Suponiendo que tienes un usuario con id 1
+    final DeviceService deviceService = DeviceService(); 
+    final Device newDevice = Device(
+      // Suponiendo que tienes un constructor adecuado en tu clase Device
+      id: 0, // Este valor no importa, ya que se generará en el backend
+      device_name: selectedDeviceType!,
+      brand: brandController.text,
+      model: modelController.text,
+      efficiency: efficiencyController.text,
+      times_week: int.parse(weeklyUseController.text),
+      daytime: int.parse(hourOfUseController.text),
+      duration: int.parse(useDurationController.text),
+    );
+    // Suponiendo que tienes un método createDevice en tu servicio de dispositivos
+    final success = await deviceService.createDevice(userId, newDevice);
+
+    if (success) {
+      // Si el dispositivo se ha creado correctamente, cierras el modal
+      Navigator.of(context).pop(true);
+    } else {
+      // Si hubo un error, puedes mostrar un mensaje o manejar el error como consideres apropiado
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Error adding device"),
+      ));
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -57,6 +113,7 @@ class CreationModal extends StatelessWidget {
                       }).toList(),
                       onChanged: (String? value) {
                         //TODO: Lógica para guardar el valor seleccionado
+                        selectedDeviceType = value;
                       },
                     ),
                   ),
@@ -103,7 +160,7 @@ class CreationModal extends StatelessWidget {
                         );
                       }).toList(),
                       onChanged: (String? value) {
-                        //TODO: Lógica para guardar el valor seleccionado
+                        
                       },
                     ),
                   ),
@@ -177,7 +234,7 @@ class CreationModal extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    // Lógica para guardar el nuevo dispositivo
+                    _addDevice();
                   },
                   child: Text('Add Device',
                       style: Theme.of(context).textTheme.bodyLarge),
