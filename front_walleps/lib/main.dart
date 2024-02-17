@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front_walleps/screens/dashboard/dashboard_screen.dart';
 import 'package:front_walleps/theme/themes.dart';
+import 'package:front_walleps/screens/schedule/schedule_screen.dart';
 
 void main() {
   runApp(const MyApp());
