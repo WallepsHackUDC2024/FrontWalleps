@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import '../../theme/themes.dart';
 import '../../widgets/CardWidget.dart' as Card;
-import '../../models/user.dart'; // Asegúrate de que el path sea correcto
-import '../../services/user_service.dart'; // Asegúrate de que el path sea correcto
+import '../../models/user.dart';
+import '../../services/user_service.dart';
 import '../../widgets/Scheduler.dart';
-import '../../models/device_scheduler.dart'; // Asegúrate de que el path sea correcto
+import '../../models/device_scheduler.dart';
 
 class ProfileScreen extends StatelessWidget {
-  final UserService userService = UserService(); // Instancia del servicio
+  final UserService userService = UserService();
 
   ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Aquí usamos directamente el ID 1 para la demo
     final int demoUserId = 1;
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Profile',
             style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
         backgroundColor: AppThemes.primaryColor,
@@ -33,16 +33,16 @@ class ProfileScreen extends StatelessWidget {
             User user = snapshot.data!;
             return SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(left: 32.0, right: 32.0, top: 8.0, bottom: 8.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 32),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(width: 16),
+                        SizedBox(width: 32),
                         CircleAvatar(
                           radius: 48,
                           backgroundImage: user.image != null
