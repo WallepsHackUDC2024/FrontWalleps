@@ -52,9 +52,9 @@ class DashboardScreen extends StatelessWidget {
       ),
       body: Row(
         children: [
-          // Dos tercios de la pantalla para los servicios contratados
+          // Tres cuartos de la pantalla para los servicios contratados
           Expanded(
-            flex: 2,
+            flex: 3,
             child: GridView.builder(
               padding: const EdgeInsets.all(8.0),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -75,7 +75,7 @@ class DashboardScreen extends StatelessWidget {
           ),
           // Divisor
           VerticalDivider(width: 1, color: AppThemes.grayColor),
-          // Un tercio de la pantalla para perfil, gráfico y planificador
+          // Un cuarto de la pantalla para perfil, gráfico y planificador
           Expanded(
             flex: 1,
             child: Column(

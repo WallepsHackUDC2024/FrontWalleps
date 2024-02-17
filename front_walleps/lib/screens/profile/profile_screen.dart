@@ -55,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(user.name,
+                              Text(user.name + ' ' +user.surname,
                                   style:
                                       Theme.of(context).textTheme.titleLarge),
                               Text(user.email,
@@ -108,18 +108,17 @@ class ProfileScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 32),
+                    SizedBox(height: 32.0),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text('Consume Planning',
                           style: Theme.of(context).textTheme.titleMedium),
                     ),
-                    SizedBox(height: 40),
-                    // Aquí insertamos el FutureBuilder para el horario del usuario
+                    SizedBox(height: 8.0),
                     Center(
                       child: FutureBuilder<List<DeviceSchedule>>(
                         future: userService.getSchedulerByUserId(demoUserId,
-                            true), // Obtiene la programación del usuario
+                            true),
                         builder: (context, scheduleSnapshot) {
                           if (scheduleSnapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -127,7 +126,6 @@ class ProfileScreen extends StatelessWidget {
                           } else if (scheduleSnapshot.hasError) {
                             return Text("Error al obtener la programación");
                           } else if (scheduleSnapshot.hasData) {
-                            // Aquí se muestra el horario después de las tarjetas
                             return WeeklySchedule(
                                 schedule: scheduleSnapshot.data!,
                                 homeHours: user.home_hours,

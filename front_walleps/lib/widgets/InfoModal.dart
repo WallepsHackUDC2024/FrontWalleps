@@ -11,6 +11,10 @@ class InfoModal extends StatelessWidget {
     required this.device,
   }) : super(key: key);
 
+  _editDevice() {}
+
+  _deleteDevice() {}
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -61,6 +65,65 @@ class InfoModal extends StatelessWidget {
             SizedBox(height: 32.0),
             Text('Efficiency: $device.efficiency',
                 style: Theme.of(context).textTheme.bodyLarge),
+            SizedBox(height: 32.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            AppThemes.tertiaryColor),
+                        minimumSize: MaterialStateProperty.all<Size>(Size(
+                            MediaQuery.of(context).size.width * 0.2,
+                            MediaQuery.of(context).size.height * 0.08)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        _editDevice();
+                      },
+                      child: Row(
+                        children: [
+                          Icon(Icons.edit, color: AppThemes.whiteColor),
+                          SizedBox(width: 16.0),
+                          Text('Edit Device',
+                              style: Theme.of(context).textTheme.bodyLarge),
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 32.0),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            AppThemes.redColor),
+                        minimumSize: MaterialStateProperty.all<Size>(Size(
+                            MediaQuery.of(context).size.width * 0.2,
+                            MediaQuery.of(context).size.height * 0.08)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        _deleteDevice();
+                      },
+                      child: Row(
+                        children: [
+                          Icon(Icons.delete, color: AppThemes.whiteColor),
+                          SizedBox(width: 16.0),
+                          Text('Delete Device',
+                              style: Theme.of(context).textTheme.bodyLarge),
+                        ],
+                      ),
+                    ),
+              ],
+            ),
           ],
         ),
       ),
