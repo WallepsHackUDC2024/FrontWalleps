@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../theme/themes.dart'; // Verifica la correcta ruta de importación
 import '../../widgets/plot.dart'; // Verifica la correcta ruta de importación
+import '../../widgets/AddCard.dart' as AddCard;
+import '../../widgets/Card.dart' as Card;
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -10,35 +12,48 @@ class DashboardScreen extends StatelessWidget {
 
     List<Widget> buttonList = [
       Padding(
-        padding: const EdgeInsets.all(8.0), // Margen alrededor de cada botón
-        child: ElevatedButton(
-          onPressed: () {},
-          child: Text('Botón 1', style: textTheme.bodyLarge),
-          style:
-              ElevatedButton.styleFrom(backgroundColor: AppThemes.primaryColor),
+          padding: const EdgeInsets.all(8.0), // Margen alrededor de cada botón
+          child: Card.CardWidget(
+            size: Card.CardSize.large,
+            color: Card.CardColor.green,
+            iconData: Icons.phone,
+            title: 'Título de la tarjeta',
+            subtitle: 'Subtítulo de la tarjeta',
+            child: Text('Contenido de la tarjeta'),
+          )),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Card.CardWidget(
+          size: Card.CardSize.large,
+          color: Card.CardColor.yellow,
+          iconData: Icons.lightbulb,
+          title: 'Título de la tarjeta',
+          subtitle: 'Subtítulo de la tarjeta',
+          child: Text('Contenido de la tarjeta'),
         ),
       ),
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton(
-          onPressed: () {},
-          child: Text('Botón 2', style: textTheme.bodyLarge),
-          style: ElevatedButton.styleFrom(
-              backgroundColor: AppThemes.secondaryColor),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton(
-          onPressed: () {},
-          child: Text('Botón 3', style: textTheme.bodyLarge),
-          style:
-              ElevatedButton.styleFrom(backgroundColor: AppThemes.greenColor),
+        child: Card.CardWidget(
+          size: Card.CardSize.large,
+          color: Card.CardColor.blue,
+          iconData: Icons.water_drop,
+          title: 'Título de la tarjeta',
+          subtitle: 'Subtítulo de la tarjeta',
+          child: Text('Contenido de la tarjeta'),
         ),
       ),
     ];
 
     return Scaffold(
+      appBar: AppBar(
+        title: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: 8.0), // Ajusta el padding según necesites
+          child: Text('Dashboard'),
+        ),
+        backgroundColor: AppThemes.primaryColor,
+      ),
       body: Row(
         children: [
           // Dos tercios de la pantalla para los botones de colores
@@ -58,11 +73,9 @@ class DashboardScreen extends StatelessWidget {
                 if (index == buttonList.length) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
+                    child: AddCard.AddCardWidget(
+                      size: AddCard.CardSize.large,
                       onPressed: () {},
-                      child: Icon(Icons.add),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: AppThemes.lightGrayColor),
                     ),
                   );
                 }

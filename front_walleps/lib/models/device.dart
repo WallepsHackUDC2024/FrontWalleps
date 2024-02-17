@@ -1,49 +1,35 @@
-import 'dart:convert';
-
 class Device {
-  final int id;
-  final String userId;
-  final String deviceName;
-  final int timesWeek;
+  final int? id;
+  final String device_name;
+  final int times_week;
   final String daytime;
   final int duration;
 
   Device({
-    required this.id,
-    required this.userId,
-    required this.deviceName,
-    required this.timesWeek,
+    this.id,
+    required this.device_name,
+    required this.times_week,
     required this.daytime,
     required this.duration,
   });
 
-  // Convertir un objeto Device a un Map. Útil para codificar a JSON antes de enviar al backend.
-  Map<String, dynamic> toMap() {
+  factory Device.fromJson(Map<String, dynamic> json) {
+    return Device(
+      id: json['id'] as int?, // Usar el operador as para manejar nulls
+      device_name: json['device_name'] as String,
+      times_week: json['times_week'] as int,
+      daytime: json['daytime'] as String,
+      duration: json['duration'] as int,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'user_id': userId,
-      'device_name': deviceName,
-      'times_week': timesWeek,
+      'device_name': device_name,
+      'times_week': times_week,
       'daytime': daytime,
       'duration': duration,
     };
   }
-
-  // Crear un objeto Device desde un Map. Útil para decodificar JSON proveniente del backend.
-  factory Device.fromMap(Map<String, dynamic> map) {
-    return Device(
-      id: map['id'],
-      userId: map['user_id'],
-      deviceName: map['device_name'],
-      timesWeek: map['times_week'],
-      daytime: map['daytime'],
-      duration: map['duration'],
-    );
-  }
-
-  // Convertir el objeto Device a JSON. Útil para enviar datos al backend.
-  String toJson() => json.encode(toMap());
-
-  // Crear un objeto Device desde una cadena JSON. Útil para procesar respuestas del backend.
-  factory Device.fromJson(String source) => Device.fromMap(json.decode(source));
 }

@@ -23,7 +23,7 @@ class PlotWithLegend extends StatelessWidget {
               FlSpot(6, 6),
             ],
             isCurved: true,
-            colors: [AppThemes.primaryColor],
+            colors: [AppThemes.greenColor],
             barWidth: 4,
             isStrokeCapRound: true,
             dotData: FlDotData(show: false),
@@ -59,7 +59,7 @@ class PlotWithLegend extends StatelessWidget {
               FlSpot(6, 7),
             ],
             isCurved: true,
-            colors: [AppThemes.greenColor],
+            colors: [AppThemes.blueColor],
             barWidth: 4,
             isStrokeCapRound: true,
             dotData: FlDotData(show: false),
@@ -75,9 +75,9 @@ class PlotWithLegend extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          LegendItem(color: AppThemes.primaryColor, text: 'Botón 1'),
+          LegendItem(color: AppThemes.greenColor, text: 'Botón 1'),
           LegendItem(color: AppThemes.secondaryColor, text: 'Botón 2'),
-          LegendItem(color: AppThemes.greenColor, text: 'Botón 3'),
+          LegendItem(color: AppThemes.blueColor, text: 'Botón 3'),
         ],
       ),
     );

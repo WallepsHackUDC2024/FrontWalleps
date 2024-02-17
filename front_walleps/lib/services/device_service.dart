@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/device.dart';
+import 'dart:developer';
 
 class DeviceService {
-  final String baseUrl = 'http:localhost:8000'; // Cambia esto por la URL de tu API
+  final String baseUrl =
+      'http://localhost:8000/device'; // Cambia esto por la URL de tu API
 
   Future<List<Device>> fetchDevices() async {
-    final response = await http.get(Uri.parse(baseUrl));
+    final response = await http.get(Uri.parse('$baseUrl/all'));
+    log('fetchDevices response: ${response.body}');
 
     if (response.statusCode == 200) {
       List<dynamic> devicesJson = json.decode(response.body);
