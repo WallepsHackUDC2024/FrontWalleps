@@ -117,11 +117,7 @@ class ProfileScreen extends StatelessWidget {
                           style: Theme.of(context).textTheme.titleMedium),
                     ),
                     SizedBox(height: 8.0),
-                    //TODO: Afegir comparativa de gastos
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('Usign the following scheduler, you can save up to AFEGIR VARIABLES', style: Theme.of(context).textTheme.bodyMedium),
-                    ),
+                    
                     Center(
                       child: FutureBuilder<List<DeviceSchedule>>(
                         future: userService.getSchedulerByUserId(demoUserId,
@@ -133,10 +129,34 @@ class ProfileScreen extends StatelessWidget {
                           } else if (scheduleSnapshot.hasError) {
                             return Text("Error al obtener la programación");
                           } else if (scheduleSnapshot.hasData) {
-                            return WeeklySchedule(
-                                schedule: scheduleSnapshot.data!,
-                                homeHours: user.home_hours,
-                                homeDuration: user.home_duration);
+                            double totalCurrentSpent = scheduleSnapshot.data!
+                              .fold(0, (sum, item) => sum + item.current_spent);
+                            double totalExpectedSpent = scheduleSnapshot.data!
+                              .fold(0, (sum, item) => sum + item.expected_spent);
+
+                            String formattedTotalCurrentSpent = totalCurrentSpent.toStringAsFixed(2);
+                            String formattedTotalExpectedSpent = totalExpectedSpent.toStringAsFixed(2);
+                            return Column(
+                              children: [
+                                Text(
+                                  'Total current spent: $formattedTotalCurrentSpent',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                Text(
+                                  'Total expected spent: $formattedTotalExpectedSpent',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                SizedBox(height: 20),
+                                Container(
+                                  height: MediaQuery.of(context).size.height * 0.6,
+                                  child: WeeklySchedule(
+                                    schedule: scheduleSnapshot.data!,
+                                    homeHours: user.home_hours,
+                                    homeDuration: user.home_duration,
+                                  ),
+                                ),
+                              ],
+                            );
                           } else {
                             return Text(
                                 "No se encontró la programación del usuario");
