@@ -6,10 +6,11 @@ enum CardSize { small, medium, large }
 enum CardColor {
   primary,
   secondary,
+  tertiary,
   red,
   yellow,
   blue,
-  green,
+  purple,
   lightBlack,
   white
 }
@@ -45,6 +46,9 @@ class CardWidget extends StatelessWidget {
       case CardColor.secondary:
         borderColor = AppThemes.secondaryColor;
         break;
+      case CardColor.tertiary:
+        borderColor = AppThemes.tertiaryColor;
+        break;
       case CardColor.red:
         borderColor = AppThemes.redColor;
         break;
@@ -54,8 +58,8 @@ class CardWidget extends StatelessWidget {
       case CardColor.blue:
         borderColor = AppThemes.blueColor;
         break;
-      case CardColor.green:
-        borderColor = AppThemes.greenColor;
+      case CardColor.purple:
+        borderColor = AppThemes.purpleColor;
         break;
       case CardColor.lightBlack:
         borderColor = AppThemes.lightBlackColor;
@@ -160,14 +164,16 @@ class CardWidget extends StatelessWidget {
         return AppThemes.primaryColor;
       case CardColor.secondary:
         return AppThemes.secondaryColor;
+      case CardColor.tertiary:
+        return AppThemes.tertiaryColor;
       case CardColor.red:
         return AppThemes.redColor;
       case CardColor.yellow:
         return AppThemes.yellowColor;
       case CardColor.blue:
         return AppThemes.blueColor;
-      case CardColor.green:
-        return AppThemes.greenColor;
+      case CardColor.purple:
+        return AppThemes.purpleColor;
       case CardColor.lightBlack:
         return AppThemes.lightBlackColor;
       case CardColor.white:
