@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/user.dart';
 import 'dart:developer';
-
+import '../models/device_scheduler.dart';
 
 class UserService {
   final String baseUrl = "http://10.20.29.249:8000/user"; // Ajusta a la URL de tu API
@@ -61,5 +61,16 @@ class UserService {
     final response = await http.delete(Uri.parse('$baseUrl/$userId'));
 
     return response.statusCode == 200;
+  }
+
+  Future<List<DeviceSchedule>> getSchedulerByUserId(int userId) async {
+    final response = await http.get(Uri.parse('$baseUrl/$userId/schedule'));
+
+    if (response.statusCode == 200) {
+      List<dynamic> scheduleJson = jsonDecode(response.body);
+      return scheduleJson.map((json) => DeviceSchedule.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load schedule');
+    }
   }
 }
