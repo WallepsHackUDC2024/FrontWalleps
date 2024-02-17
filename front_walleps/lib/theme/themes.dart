@@ -23,7 +23,12 @@ class AppThemes {
       onBackground: blackColor,
     ),
     textTheme: TextTheme(
-      bodyLarge: TextStyle(color: blackColor),
+      titleLarge: TextStyle(color: blackColor, fontSize: 32.0, fontWeight: FontWeight.bold),
+      titleMedium: TextStyle(color: blackColor, fontSize: 28.0, fontWeight: FontWeight.bold),
+      titleSmall: TextStyle(color: blackColor, fontSize: 24.0, fontWeight: FontWeight.bold),
+      bodyLarge: TextStyle(color: blackColor, fontSize: 16.0),
+      bodyMedium: TextStyle(color: blackColor, fontSize: 14.0),
+      bodySmall: TextStyle(color: blackColor, fontSize: 12.0),
     ),
   );
 
@@ -37,7 +42,12 @@ class AppThemes {
       onBackground: whiteColor,
     ),
     textTheme: TextTheme(
-      bodyLarge: TextStyle(color: whiteColor),
+      titleLarge: TextStyle(color: whiteColor, fontSize: 32.0, fontWeight: FontWeight.bold),
+      titleMedium: TextStyle(color: whiteColor, fontSize: 28.0, fontWeight: FontWeight.bold),
+      titleSmall: TextStyle(color: whiteColor, fontSize: 24.0, fontWeight: FontWeight.bold),
+      bodyLarge: TextStyle(color: whiteColor, fontSize: 16.0),
+      bodyMedium: TextStyle(color: whiteColor, fontSize: 14.0),
+      bodySmall: TextStyle(color: whiteColor, fontSize: 12.0),
     ),
   );
 }
