@@ -1,12 +1,12 @@
 class Device {
-  final int? id;
+  final int id;
   final String device_name;
   final int times_week;
-  final String daytime;
+  final int daytime;
   final int duration;
 
   Device({
-    this.id,
+    required this.id,
     required this.device_name,
     required this.times_week,
     required this.daytime,
@@ -15,10 +15,10 @@ class Device {
 
   factory Device.fromJson(Map<String, dynamic> json) {
     return Device(
-      id: json['id'] as int?, // Usar el operador as para manejar nulls
+      id: json['id'] as int, // Usar el operador as para manejar nulls
       device_name: json['device_name'] as String,
       times_week: json['times_week'] as int,
-      daytime: json['daytime'] as String,
+      daytime: json['daytime'] as int,
       duration: json['duration'] as int,
     );
   }

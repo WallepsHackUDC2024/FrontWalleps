@@ -6,6 +6,7 @@ import 'widgets/AddCard.dart' as AddCard;
 import 'widgets/Card.dart' as Card;
 import 'package:front_walleps/screens/schedule/schedule_screen.dart';
 import 'package:front_walleps/screens/planner/planner_screen.dart';
+import 'package:front_walleps/screens/profile/profile_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/dashboard': (context) => DashboardScreen(),
         '/planner': (context) => PlannerScreen(),
+        '/profile' : (context) => ProfileScreen(),
       },
     );
   }

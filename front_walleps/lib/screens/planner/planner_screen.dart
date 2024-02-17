@@ -28,34 +28,32 @@ class PlannerScreen extends StatelessWidget {
               return Text("Error: ${snapshot.error}");
             } else if (snapshot.hasData) {
               final devices = snapshot.data!;
-              log('devices: $devices');
-              return Wrap(
-                spacing: 8.0,
-                runSpacing: 8.0,
-                children: devices.map<Widget>((device) {
-                  return Card.CardWidget(
-                    size: Card.CardSize.small,
-                    color: Card.CardColor
-                        .secondary, // Ajusta según los datos del dispositivo
-                    iconData: Icons
-                        .devices_other, // Ajusta según los datos del dispositivo
-                    title: device
-                        .device_name, // Asume que tu modelo Device tiene un campo name
-                    subtitle:
-                        'ID: ${device.id}', // Asume que tu modelo Device tiene un campo id
-                    child: Text(
-                        'Detalles adicionales aquí'), // Ajusta según los datos del dispositivo
-                  );
-                }).toList()
-                  ..add(Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: AddCard.AddCardWidget(
-                      size: AddCard.CardSize.small,
-                      onPressed: () {
-                        // Acción al presionar el botón de añadir
-                      },
-                    ),
-                  )),
+              // Cambio aquí: Usar ListView.builder en lugar de Wrap
+              return ListView.builder(
+                scrollDirection: Axis.horizontal, // Hace el ListView horizontal
+                itemCount: devices.length + 1, // Incluye espacio para AddCard
+                itemBuilder: (context, index) {
+                  if (index < devices.length) {
+                    final device = devices[index];
+                    return Card.CardWidget(
+                      size: Card.CardSize.small,
+                      color: Card.CardColor.secondary,
+                      iconData: Icons.devices_other,
+                      title: device.device_name,
+                      subtitle: 'ID: ${device.id}',
+                      child: Text('Detalles adicionales aquí'),
+                    );
+                  } else {
+                    // AddCard widget al final
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: AddCard.AddCardWidget(
+                        size: AddCard.CardSize.small,
+                        onPressed: () {},
+                      ),
+                    );
+                  }
+                },
               );
             } else {
               return Text('No data');

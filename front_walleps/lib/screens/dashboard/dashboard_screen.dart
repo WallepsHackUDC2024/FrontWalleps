@@ -17,9 +17,9 @@ class DashboardScreen extends StatelessWidget {
             size: Card.CardSize.large,
             color: Card.CardColor.green,
             iconData: Icons.phone,
-            title: 'Título de la tarjeta',
-            subtitle: 'Subtítulo de la tarjeta',
-            child: Text('Contenido de la tarjeta'),
+            title: 'Phone Contract',
+            subtitle: 'Service Provider: Orange',
+            child: Text('Unlimited Calls & Texts, 20GB Data per month. Contract till: DD/MM/YYYY'),
           )),
       Padding(
         padding: const EdgeInsets.all(8.0),
@@ -27,9 +27,9 @@ class DashboardScreen extends StatelessWidget {
           size: Card.CardSize.large,
           color: Card.CardColor.yellow,
           iconData: Icons.lightbulb,
-          title: 'Título de la tarjeta',
-          subtitle: 'Subtítulo de la tarjeta',
-          child: Text('Contenido de la tarjeta'),
+          title: 'Electricity Contract',
+          subtitle: 'Utility Company: Endesa',
+          child: Text('Monthly Average: XX.XX.€ Renewable Energy Plan. Next Billing Date: DD/MM/YYYY.'),
         ),
       ),
       Padding(
@@ -38,9 +38,9 @@ class DashboardScreen extends StatelessWidget {
           size: Card.CardSize.large,
           color: Card.CardColor.blue,
           iconData: Icons.water_drop,
-          title: 'Título de la tarjeta',
-          subtitle: 'Subtítulo de la tarjeta',
-          child: Text('Contenido de la tarjeta'),
+          title: 'Water Service Contract',
+          subtitle: 'Water Supplier: Aigües de Lleida',
+          child: Text('Monthly Average: XX.XX.€. Next Billing Date: DD/MM/YYYY.'),
         ),
       ),
     ];
@@ -93,8 +93,10 @@ class DashboardScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Perfil', style: textTheme.bodyLarge),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/profile');
+                    },
+                    child: Text('Profile', style: textTheme.bodyLarge),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppThemes.primaryColor),
                   ),
@@ -111,8 +113,10 @@ class DashboardScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Planificador', style: textTheme.bodyLarge),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/planner');
+                    },
+                    child: Text('Planner', style: textTheme.bodyLarge),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppThemes.primaryColor),
                   ),
