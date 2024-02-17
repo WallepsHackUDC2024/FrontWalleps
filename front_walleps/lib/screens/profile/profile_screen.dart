@@ -45,10 +45,12 @@ class ProfileScreen extends StatelessWidget {
                         SizedBox(width: 32),
                         CircleAvatar(
                           radius: 48,
+                          child: Icon(Icons.person, size: 64),
+                          /*
                           backgroundImage: user.image != null
                               ? NetworkImage(user.image!)
-                              : AssetImage('assets/default_image.png')
-                                  as ImageProvider,
+                              : AssetImage('lib/assets/images/default_user_image.png') as ImageProvider,
+                          */
                         ),
                         SizedBox(width: 16),
                         Expanded(
@@ -115,6 +117,11 @@ class ProfileScreen extends StatelessWidget {
                           style: Theme.of(context).textTheme.titleMedium),
                     ),
                     SizedBox(height: 8.0),
+                    //TODO: Afegir comparativa de gastos
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Usign the following scheduler, you can save up to AFEGIR VARIABLES', style: Theme.of(context).textTheme.bodyMedium),
+                    ),
                     Center(
                       child: FutureBuilder<List<DeviceSchedule>>(
                         future: userService.getSchedulerByUserId(demoUserId,

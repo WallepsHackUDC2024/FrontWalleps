@@ -35,7 +35,7 @@ class DashboardScreen extends StatelessWidget {
         iconData: Icons.lightbulb,
         title: 'Electricity',
         subtitle: 'Utility Company: Endesa',
-        onPressed: () {},
+        onPressed: () {Navigator.pushNamed(context, '/service');},
         child: Text(
             'Monthly Average: XX.XX.€ Renewable Energy Plan.\nNext Billing Date: DD/MM/YYYY.'),
       ),

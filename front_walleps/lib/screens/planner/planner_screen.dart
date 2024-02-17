@@ -40,6 +40,28 @@ class PlannerScreen extends StatelessWidget {
     );
   }
 
+  /*
+  Color getEfficiencyColor(String efficiency) {
+    switch (efficiency) {
+      case 'A':
+        return Color.fromRGBO(59, 118, 52, 1);
+      case 'B':
+        return Color.fromRGBO(93, 164, 54, 1);
+      case 'C':
+        return Color.fromRGBO(163, 207, 41, 1);
+      case 'D':
+        return Color.fromRGBO(247, 223, 28, 1);
+      case 'E':
+        return Color.fromRGBO(241, 143, 32, 1);
+      case 'F':
+        return Color.fromRGBO(235, 66, 44, 1);
+      case 'G':
+        return Color.fromRGBO(234, 31, 56, 1);
+      default:
+        return AppThemes.whiteColor;
+    }
+  }
+  */
   @override
   Widget build(BuildContext context) {
     final int demoUserId = 1;
@@ -62,7 +84,7 @@ class PlannerScreen extends StatelessWidget {
           } else if (snapshot.hasData) {
             final devices = snapshot.data!;
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(left: 32.0, right: 32.0, top: 8.0, bottom: 8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,11 +137,11 @@ class PlannerScreen extends StatelessWidget {
                             color: CardColor.secondary,
                             iconData: Icons.device_unknown,
                             title: device.device_name,
-                            subtitle: 'ID: ${device.id}',
+                            subtitle: device.brand + ' ' + device.model,
                             onPressed: () {
                               _showInfoModal(context, device);
                             },
-                            child: Text('Detalles adicionales aquí'),
+                            child: Text('Eficiency ${device.efficiency}'),
                           ),
                         AddCard.AddCardWidget(
                           size: AddCard.CardSize.small,
@@ -136,7 +158,606 @@ class PlannerScreen extends StatelessWidget {
                     child: Text('Time at home',
                         style: Theme.of(context).textTheme.titleMedium),
                   ),
-                  //TODO: Add time at home widget
+                  Container(
+                    padding: EdgeInsets.all(16.0),
+                    width: MediaQuery.of(context).size.width * 0.75,
+                    child: Table(
+                      border: TableBorder.all(
+                          color: AppThemes.grayColor, width: 1.0),
+                      children: [
+                        TableRow(children: [
+                          Text(''),
+                          Text('Mon', style: TextStyle(color: AppThemes.secondaryColor)),
+                          Text('Tue', style: TextStyle(color: AppThemes.secondaryColor)),
+                          Text('Wed', style: TextStyle(color: AppThemes.secondaryColor)),
+                          Text('Thu', style: TextStyle(color: AppThemes.secondaryColor)),
+                          Text('Fri', style: TextStyle(color: AppThemes.secondaryColor)),
+                          Text('Sat', style: TextStyle(color: AppThemes.secondaryColor)),
+                          Text('Sun', style: TextStyle(color: AppThemes.secondaryColor)),
+                        ]),
+                        TableRow(children: [
+                          Text('To', style: TextStyle(color: AppThemes.secondaryColor)),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                        ]),
+                        TableRow(children: [
+                          Text('From', style: TextStyle(color: AppThemes.secondaryColor)),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: DropdownButtonFormField<String>(
+                              items: <String>[
+                                '00:00h',
+                                '01:00h',
+                                '02:00h',
+                                '03:00h',
+                                '04:00h',
+                                '05:00h',
+                                '06:00h',
+                                '07:00h',
+                                '08:00h',
+                                '09:00h',
+                                '10:00h',
+                                '11:00h',
+                                '12:00h',
+                                '13:00h',
+                                '14:00h',
+                                '15:00h',
+                                '16:00h',
+                                '17:00h',
+                                '18:00h',
+                                '19:00h',
+                                '20:00h',
+                                '21:00h',
+                                '22:00h',
+                                '23:00h',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                //TODO: Lógica para guardar el valor seleccionado
+                              },
+                            ),
+                          ),
+                        ]),
+                      ],
+                    ),
+                  ),
                   SizedBox(height: 32),
                   Expanded(child: SizedBox.shrink()),
                   Center(

@@ -21,7 +21,7 @@ class Device {
 
   factory Device.fromJson(Map<String, dynamic> json) {
     return Device(
-      id: json['id'] as int, // Usar el operador as para manejar nulls
+      id: json['id'] as int,
       device_name: json['device_name'] as String,
       times_week: json['times_week'] as int,
       daytime: json['daytime'] as int,
