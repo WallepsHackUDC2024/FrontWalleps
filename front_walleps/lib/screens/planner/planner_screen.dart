@@ -7,6 +7,7 @@ import '../../services/device_service.dart';
 import 'dart:developer';
 
 import '../../widgets/CreationModal.dart';
+import '../../widgets/PlanningModal.dart';
 import '../../widgets/InfoModal.dart';
 
 class PlannerScreen extends StatelessWidget {
@@ -30,7 +31,14 @@ class PlannerScreen extends StatelessWidget {
     );
   }
 
-  _showPlanner() {}
+  _showPlanningModal(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return PlanningModal();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,8 +113,7 @@ class PlannerScreen extends StatelessWidget {
                           CardWidget(
                             size: CardSize.small,
                             color: CardColor.secondary,
-                            iconData: Icons
-                                .device_unknown,
+                            iconData: Icons.device_unknown,
                             title: device.device_name,
                             subtitle: 'ID: ${device.id}',
                             onPressed: () {
@@ -148,7 +155,7 @@ class PlannerScreen extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        _showPlanner();
+                        _showPlanningModal(context);
                       },
                       child: Text('Create Schedule',
                           style: Theme.of(context).textTheme.bodyLarge),
