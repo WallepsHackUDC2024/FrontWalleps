@@ -52,14 +52,18 @@ class PlanningModal extends StatelessWidget {
                             .fold(0, (sum, item) => sum + item.current_spent);
                         double totalExpectedSpent = snapshotSchedule.data!
                             .fold(0, (sum, item) => sum + item.expected_spent);
+
+                        String formattedTotalCurrentSpent = totalCurrentSpent.toStringAsFixed(2);
+                        String formattedTotalExpectedSpent = totalExpectedSpent.toStringAsFixed(2);
+
                         return Column(
                           children: [
                             Text(
-                              'Total current spent: $totalCurrentSpent',
+                              'Total current spent: $formattedTotalCurrentSpent',
                               style: TextStyle(fontSize: 16),
                             ),
                             Text(
-                              'Total expected spent: $totalExpectedSpent',
+                              'Total expected spent: $formattedTotalExpectedSpent',
                               style: TextStyle(fontSize: 16),
                             ),
                             SizedBox(height: 20),
