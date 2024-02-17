@@ -21,6 +21,7 @@ class CardWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final Widget child;
+  final VoidCallback onPressed;
 
   const CardWidget({
     Key? key,
@@ -30,6 +31,7 @@ class CardWidget extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.child,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -98,52 +100,55 @@ class CardWidget extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
-          border: Border.all(color: borderColor, width: 2.0),
-        ),
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: _getColor(color),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Icon(
-                      iconData,
-                      size: 0.12 * height,
-                      color: Theme.of(context).colorScheme.background,
+      child: InkWell(
+        onTap: onPressed,
+        child: Container(
+          width: width,
+          height: height,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            border: Border.all(color: borderColor, width: 2.0),
+          ),
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: _getColor(color),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Icon(
+                        iconData,
+                        size: 0.12 * height,
+                        color: Theme.of(context).colorScheme.background,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(width: 16.0),
-                Text(
-                  title,
-                  style: titleStyle,
-                ),
-              ],
-            ),
-            SizedBox(height: 16.0),
-            Text(
-              subtitle,
-              style: subtitleStyle,
-            ),
-            SizedBox(height: 16.0),
-            Expanded(
-              child: child,
-            ),
-          ],
+                  SizedBox(width: 16.0),
+                  Text(
+                    title,
+                    style: titleStyle,
+                  ),
+                ],
+              ),
+              SizedBox(height: 16.0),
+              Text(
+                subtitle,
+                style: subtitleStyle,
+              ),
+              SizedBox(height: 16.0),
+              Expanded(
+                child: child,
+              ),
+            ],
+          ),
         ),
       ),
     );

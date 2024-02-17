@@ -19,6 +19,7 @@ class DashboardScreen extends StatelessWidget {
             iconData: Icons.phone,
             title: 'Título de la tarjeta',
             subtitle: 'Subtítulo de la tarjeta',
+            onPressed: () {},
             child: Text('Contenido de la tarjeta'),
           )),
       Padding(
@@ -29,6 +30,7 @@ class DashboardScreen extends StatelessWidget {
           iconData: Icons.lightbulb,
           title: 'Título de la tarjeta',
           subtitle: 'Subtítulo de la tarjeta',
+          onPressed: () {},
           child: Text('Contenido de la tarjeta'),
         ),
       ),
@@ -40,6 +42,7 @@ class DashboardScreen extends StatelessWidget {
           iconData: Icons.water_drop,
           title: 'Título de la tarjeta',
           subtitle: 'Subtítulo de la tarjeta',
+          onPressed: () {},
           child: Text('Contenido de la tarjeta'),
         ),
       ),
@@ -94,7 +97,7 @@ class DashboardScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: Text('Perfil', style: textTheme.bodyLarge),
+                    child: Text('Profile', style: textTheme.bodyLarge),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppThemes.primaryColor),
                   ),
@@ -112,7 +115,7 @@ class DashboardScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: Text('Planificador', style: textTheme.bodyLarge),
+                    child: Text('Planner', style: textTheme.bodyLarge),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppThemes.primaryColor),
                   ),

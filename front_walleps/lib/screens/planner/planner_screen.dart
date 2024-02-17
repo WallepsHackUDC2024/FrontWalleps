@@ -6,8 +6,19 @@ import '../../models/device.dart'; // Asegúrate de que la ruta de importación 
 import '../../services/device_service.dart'; // Asegúrate de que la ruta de importación es correcta
 import 'dart:developer';
 
+import '../../widgets/Modal.dart';
+
 class PlannerScreen extends StatelessWidget {
   final DeviceService deviceService = DeviceService();
+
+  _showInfoModal(BuildContext context, Device device) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return InfoModal(device: device);
+        },
+      );
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +54,7 @@ class PlannerScreen extends StatelessWidget {
                         .device_name, // Asume que tu modelo Device tiene un campo name
                     subtitle:
                         'ID: ${device.id}', // Asume que tu modelo Device tiene un campo id
+                    onPressed: () { _showInfoModal(context, device); },
                     child: Text(
                         'Detalles adicionales aquí'), // Ajusta según los datos del dispositivo
                   );
