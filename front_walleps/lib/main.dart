@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:front_walleps/theme/themes.dart';
 
-import 'widgets/Card.dart';
+import 'widgets/AddCard.dart' as AddCard;
+import 'widgets/Card.dart' as Card;
 
 void main() {
   runApp(const MyApp());
@@ -101,21 +102,37 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Row(
               children: [
-                CardWidget(
-                  size: CardSize.large,
-                  color: CardColor.green,
+                Card.CardWidget(
+                  size: Card.CardSize.large,
+                  color: Card.CardColor.green,
                   iconData: Icons.phone,
                   title: 'Título de la tarjeta',
                   subtitle: 'Subtítulo de la tarjeta',
                   child: Text('Contenido de la tarjeta'),
                 ),
-                CardWidget(
-                  size: CardSize.large,
-                  color: CardColor.yellow,
+                Card.CardWidget(
+                  size: Card.CardSize.large,
+                  color: Card.CardColor.yellow,
                   iconData: Icons.lightbulb,
                   title: 'Título de la tarjeta',
                   subtitle: 'Subtítulo de la tarjeta',
                   child: Text('Contenido de la tarjeta'),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Card.CardWidget(
+                  size: Card.CardSize.large,
+                  color: Card.CardColor.blue,
+                  iconData: Icons.water_drop,
+                  title: 'Título de la tarjeta',
+                  subtitle: 'Subtítulo de la tarjeta',
+                  child: Text('Contenido de la tarjeta'),
+                ),
+                AddCard.AddCardWidget(
+                  size: AddCard.CardSize.large,
+                  onPressed: () {},
                 ),
               ],
             ),
