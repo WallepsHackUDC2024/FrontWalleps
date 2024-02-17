@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense para saber los atributos posibles.
+    // Mantenga el puntero para ver las descripciones de los existentes atributos.
+    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "front_walleps",
+            "cwd": "front_walleps",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "front_walleps (profile mode)",
+            "cwd": "front_walleps",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "front_walleps (release mode)",
+            "cwd": "front_walleps",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
