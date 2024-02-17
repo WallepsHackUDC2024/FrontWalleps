@@ -20,7 +20,7 @@ class ButtonWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: LayoutBuilder(builder: (context, constraints) {
         double width = constraints.maxWidth;
-        double height = constraints.maxWidth * 0.2;
+        double height = constraints.maxWidth * 0.22;
         TextStyle? titleStyle = Theme.of(context).textTheme.titleSmall;
       
         return InkWell(
@@ -28,6 +28,7 @@ class ButtonWidget extends StatelessWidget {
           child: Container(
             width: width,
             height: height,
+            alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
               border: Border.all(

@@ -35,6 +35,29 @@ class CardWidget extends StatelessWidget {
     required this.onPressed,
   }) : super(key: key);
 
+  String parseTitle(String title) {
+    return title.split('_').map((word) => word[0].toUpperCase() + word.substring(1)).join(' ');
+  }
+
+    IconData getIconForDevice(String deviceName) {
+    switch (deviceName) {
+      case 'fridge':
+        return Icons.kitchen;
+      case 'dishwasher':
+        return Icons.water;
+      case 'washing_machine':
+        return Icons.local_laundry_service;
+      case 'electric_stove':
+        return Icons.fireplace;
+      case 'electric_water_heater':
+        return Icons.dew_point;
+      case 'electric_heating_system':
+        return Icons.thermostat;
+      default:
+        return Icons.device_unknown;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Color borderColor;
@@ -129,7 +152,7 @@ class CardWidget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Icon(
-                        iconData,
+                        getIconForDevice(title),
                         size: 0.12 * height,
                         color: Theme.of(context).colorScheme.background,
                       ),
@@ -137,7 +160,7 @@ class CardWidget extends StatelessWidget {
                   ),
                   SizedBox(width: 16.0),
                   Text(
-                    title,
+                    parseTitle(title),
                     style: titleStyle,
                   ),
                 ],

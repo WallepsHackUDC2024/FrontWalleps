@@ -130,7 +130,7 @@ class PlannerScreen extends StatelessWidget {
                   ),
                   //TODO: Add time at home widget
                   SizedBox(height: 32),
-                  //TODO: Change button style
+                  Expanded(child: SizedBox.shrink()),
                   Center(
                     child: ElevatedButton(
                       style: ButtonStyle(
@@ -153,6 +153,7 @@ class PlannerScreen extends StatelessWidget {
                           style: Theme.of(context).textTheme.bodyLarge),
                     ),
                   ),
+                  SizedBox(height: 16.0),
                 ],
               ),
             );
