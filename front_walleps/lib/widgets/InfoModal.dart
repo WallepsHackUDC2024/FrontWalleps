@@ -1,15 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:front_walleps/theme/themes.dart';
+import 'package:front_walleps/services/device_service.dart';
 
 import '../models/device.dart';
 
 class InfoModal extends StatelessWidget {
   final Device device;
+  final DeviceService deviceService =
+      DeviceService(); // Crea una instancia de DeviceService
 
-  const InfoModal({
-    Key? key,
+  InfoModal({
+    super.key,
     required this.device,
-  }) : super(key: key);
+  });
+
+  _deleteDevice(BuildContext context) async {
+    // Llama al método deleteDevice usando la instancia de DeviceService
+    final success = await deviceService.deleteDevice(device.id);
+    if (success) {
+      // Si el dispositivo se eliminó correctamente, cierra el modal
+      Navigator.of(context).pop(true);
+    } else {
+      // Manejo de error
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Failed to delete the device.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   String parseTitle(String title) {
     return title
@@ -38,8 +69,6 @@ class InfoModal extends StatelessWidget {
   }
 
   _editDevice() {}
-
-  _deleteDevice() {}
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +165,7 @@ class InfoModal extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    _deleteDevice();
+                    _deleteDevice(context);
                   },
                   child: Row(
                     children: [

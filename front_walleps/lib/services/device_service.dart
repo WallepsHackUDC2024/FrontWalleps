@@ -61,10 +61,13 @@ class DeviceService {
     }
   }
 
-  Future<void> deleteDevice(int id) async {
+  Future<bool> deleteDevice(int id) async {
     final response = await http.delete(Uri.parse('$baseUrl/$id'));
 
-    if (response.statusCode != 204) {
+    if (response.statusCode == 200) {
+      // retrun de si el succes que hay en el json es true
+      return json.decode(response.body)['success'];
+    } else {
       throw Exception('Failed to delete device');
     }
   }
