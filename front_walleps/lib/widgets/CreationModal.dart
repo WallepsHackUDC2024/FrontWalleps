@@ -165,21 +165,22 @@ class CreationModal extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(AppThemes.tertiaryColor),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        AppThemes.tertiaryColor),
                     minimumSize: MaterialStateProperty.all<Size>(Size(
                         MediaQuery.of(context).size.width * 0.3,
                         MediaQuery.of(context).size.height * 0.08)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
                   ),
                   onPressed: () {
                     // Lógica para guardar el nuevo dispositivo
                   },
-                  child: Text('Add Device', style: Theme.of(context).textTheme.bodyLarge),
+                  child: Text('Add Device',
+                      style: Theme.of(context).textTheme.bodyLarge),
                 ),
               ),
             ],
