@@ -4,6 +4,9 @@ class Device {
   final int times_week;
   final int daytime;
   final int duration;
+  final String brand;
+  final String model;
+  final String efficiency;
 
   Device({
     required this.id,
@@ -11,6 +14,9 @@ class Device {
     required this.times_week,
     required this.daytime,
     required this.duration,
+    required this.brand,
+    required this.model,
+    required this.efficiency,
   });
 
   factory Device.fromJson(Map<String, dynamic> json) {
@@ -20,6 +26,9 @@ class Device {
       times_week: json['times_week'] as int,
       daytime: json['daytime'] as int,
       duration: json['duration'] as int,
+      brand: json['brand'] as String,
+      model: json['model'] as String,
+      efficiency: json['efficiency'] as String,
     );
   }
 
@@ -30,6 +39,9 @@ class Device {
       'times_week': times_week,
       'daytime': daytime,
       'duration': duration,
+      'brand': brand,
+      'model': model,
+      'efficiency': efficiency,
     };
   }
 }
