@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:front_walleps/theme/themes.dart';
 
+import 'widgets/Card.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -96,6 +98,26 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            Row(
+              children: [
+                CardWidget(
+                  size: CardSize.large,
+                  color: CardColor.green,
+                  iconData: Icons.phone,
+                  title: 'Título de la tarjeta',
+                  subtitle: 'Subtítulo de la tarjeta',
+                  child: Text('Contenido de la tarjeta'),
+                ),
+                CardWidget(
+                  size: CardSize.large,
+                  color: CardColor.yellow,
+                  iconData: Icons.lightbulb,
+                  title: 'Título de la tarjeta',
+                  subtitle: 'Subtítulo de la tarjeta',
+                  child: Text('Contenido de la tarjeta'),
+                ),
+              ],
             ),
           ],
         ),
