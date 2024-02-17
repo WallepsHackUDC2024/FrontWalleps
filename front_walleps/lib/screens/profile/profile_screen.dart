@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/themes.dart';
-import '../../widgets/Card.dart' as Card;
+import '../../widgets/CardWidget.dart' as Card;
 import '../../models/user.dart'; // Asegúrate de que el path sea correcto
 import '../../services/user_service.dart'; // Asegúrate de que el path sea correcto
 import '../../widgets/Scheduler.dart';

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import '../../theme/themes.dart';
-import '../../widgets/AddCard.dart' as AddCard;
-import '../../widgets/Card.dart';
+import '../../widgets/AddCardWidget.dart' as AddCard;
+import '../../widgets/CardWidget.dart';
 import '../../models/device.dart';
 import '../../services/device_service.dart';
 import 'dart:developer';
 
-import '../../widgets/Modal.dart';
+import '../../widgets/CreationModal.dart';
+import '../../widgets/InfoModal.dart';
 
 class PlannerScreen extends StatelessWidget {
   final DeviceService deviceService = DeviceService();
@@ -16,6 +17,15 @@ class PlannerScreen extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return InfoModal(device: device);
+      },
+    );
+  }
+
+  _showCreationModal(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CreationModal();
       },
     );
   }
@@ -105,7 +115,7 @@ class PlannerScreen extends StatelessWidget {
                         AddCard.AddCardWidget(
                           size: AddCard.CardSize.small,
                           onPressed: () {
-                            // Acción al presionar el botón de añadir
+                            _showCreationModal(context);
                           },
                         ),
                       ],
