@@ -15,18 +15,26 @@ class ServiceCreationModal extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.6,
         height: MediaQuery.of(context).size.height * 0.6,
         child: Center(
-          child: Column(children: [
-            Icon(
-              Icons.backup,
-              size: 48.0,
-              color: AppThemes.secondaryColor,
-            ),
-            SizedBox(height: 8.0),
-            Text(
-              'Upload invoices',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ],),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                icon: Icon(Icons.backup),
+                iconSize: 64.0,
+                color: AppThemes.secondaryColor,
+                onPressed: () {
+                  Navigator.pop(context);
+                }
+              ),
+              SizedBox(height: 8.0),
+              Text(
+                'Upload invoices',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              SizedBox(height: 8.0),
+              Text('Upload your invoices to keep track of your expenses.')
+            ],
+          ),
         ),
       ),
     );

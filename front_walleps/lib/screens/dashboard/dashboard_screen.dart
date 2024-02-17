@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import '../../theme/themes.dart'; // Verifica la correcta ruta de importación
 import '../../widgets/ButtonWidget.dart';
+import '../../widgets/ServiceCreationModal.dart';
 import '../../widgets/plot.dart'; // Verifica la correcta ruta de importación
 import '../../widgets/AddCardWidget.dart' as AddCard;
 import '../../widgets/CardWidget.dart';
 
 class DashboardScreen extends StatelessWidget {
+  _showServiceCreationModal(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return ServiceCreationModal();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> buttonList = [
@@ -64,7 +74,7 @@ class DashboardScreen extends StatelessWidget {
                 if (index == buttonList.length) {
                   return AddCard.AddCardWidget(
                     size: AddCard.CardSize.large,
-                    onPressed: () {},
+                    onPressed: () { _showServiceCreationModal(context); },
                   );
                 }
                 return buttonList[index];
