@@ -172,7 +172,7 @@ class InfoModal extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      _deleteDevice();
+                      _deleteDevice(context);
                     },
                     child: Row(
                       children: [
