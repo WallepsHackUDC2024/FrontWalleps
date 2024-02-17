@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/themes.dart'; // Verifica la correcta ruta de importación
+import '../../widgets/Button.dart';
 import '../../widgets/plot.dart'; // Verifica la correcta ruta de importación
 import '../../widgets/AddCard.dart' as AddCard;
 import '../../widgets/Card.dart' as Card;
@@ -95,11 +96,13 @@ class DashboardScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Profile', style: textTheme.bodyLarge),
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: AppThemes.primaryColor),
+                  child: ButtonWidget(
+                    iconData: Icons.person,
+                    color: Theme.of(context).colorScheme.onBackground,
+                    text: 'Profile',
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/profile');
+                    },
                   ),
                 ),
                 Padding(
@@ -113,11 +116,13 @@ class DashboardScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Planner', style: textTheme.bodyLarge),
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: AppThemes.primaryColor),
+                  child: ButtonWidget(
+                    iconData: Icons.edit_calendar,
+                    color: AppThemes.redColor,
+                    text: 'Planner',
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/planner');
+                    },
                   ),
                 ),
               ],
