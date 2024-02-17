@@ -19,6 +19,7 @@ class _CreationModalState extends State<CreationModal> {
   final hourOfUseController = TextEditingController();
   final useDurationController = TextEditingController();
   String? selectedDeviceType;
+  String? selectedEfficiency;
 
   @override
   void dispose() {
@@ -35,14 +36,14 @@ class _CreationModalState extends State<CreationModal> {
   Future<void> _addDevice() async {
     // Aquí deberías construir el objeto Device con los datos del formulario
     int userId = 1; // Suponiendo que tienes un usuario con id 1
-    final DeviceService deviceService = DeviceService(); 
+    final DeviceService deviceService = DeviceService();
     final Device newDevice = Device(
       // Suponiendo que tienes un constructor adecuado en tu clase Device
       id: 0, // Este valor no importa, ya que se generará en el backend
       device_name: selectedDeviceType!,
       brand: brandController.text,
       model: modelController.text,
-      efficiency: efficiencyController.text,
+      efficiency: selectedEfficiency!,
       times_week: int.parse(weeklyUseController.text),
       daytime: int.parse(hourOfUseController.text),
       duration: int.parse(useDurationController.text),
@@ -60,6 +61,7 @@ class _CreationModalState extends State<CreationModal> {
       ));
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -128,7 +130,9 @@ class _CreationModalState extends State<CreationModal> {
                   ),
                   SizedBox(width: 8.0),
                   Expanded(
-                    child: TextFormField(),
+                    child: TextFormField(
+                      controller: brandController,
+                    ),
                   ),
                   SizedBox(width: 32.0),
                   Text(
@@ -137,7 +141,9 @@ class _CreationModalState extends State<CreationModal> {
                   ),
                   SizedBox(width: 8.0),
                   Expanded(
-                    child: TextFormField(),
+                    child: TextFormField(
+                      controller: modelController,
+                    ),
                   ),
                 ],
               ),
@@ -160,7 +166,7 @@ class _CreationModalState extends State<CreationModal> {
                         );
                       }).toList(),
                       onChanged: (String? value) {
-                        
+                        selectedEfficiency = value;
                       },
                     ),
                   ),
@@ -182,6 +188,7 @@ class _CreationModalState extends State<CreationModal> {
                   SizedBox(width: 8.0),
                   Expanded(
                     child: TextFormField(
+                      controller: weeklyUseController,
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly
@@ -196,6 +203,7 @@ class _CreationModalState extends State<CreationModal> {
                   SizedBox(width: 8.0),
                   Expanded(
                     child: TextFormField(
+                      controller: hourOfUseController,
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly
@@ -210,6 +218,7 @@ class _CreationModalState extends State<CreationModal> {
                   SizedBox(width: 8.0),
                   Expanded(
                     child: TextFormField(
+                      controller: useDurationController,
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly

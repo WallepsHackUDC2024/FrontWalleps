@@ -32,7 +32,11 @@ class DeviceService {
   Future<bool> createDevice(int userId, Device device) async {
     print('createDevice: $device userId: $userId');
     final url = Uri.parse(baseUrl); // Asegúrate de que la URL sea correcta
-    final deviceData = device.toJson(); // Suponiendo que tienes este método en tu clase Device
+    final deviceData =
+        device.toJson(); // Suponiendo que tienes este método en tu clase Device
+    //buscar el elemento que se llama id en el device data y eliminarlo
+    deviceData.remove('id');
+
     final body = json.encode({
       'user_id': userId,
       ...deviceData,
