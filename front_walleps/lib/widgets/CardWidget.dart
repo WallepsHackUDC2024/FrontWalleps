@@ -80,7 +80,7 @@ class CardWidget extends StatelessWidget {
         width = 280.0;
         height = 172.0;
         titleStyle =
-            Theme.of(context).textTheme.titleSmall ?? TextStyle(fontSize: 24.0);
+            Theme.of(context).textTheme.titleSmall ?? TextStyle(fontSize: 20.0);
         subtitleStyle =
             Theme.of(context).textTheme.bodySmall ?? TextStyle(fontSize: 12.0);
         break;
@@ -88,7 +88,7 @@ class CardWidget extends StatelessWidget {
         width = 388.0;
         height = 238.0;
         titleStyle = Theme.of(context).textTheme.titleMedium ??
-            TextStyle(fontSize: 28.0);
+            TextStyle(fontSize: 24.0);
         subtitleStyle =
             Theme.of(context).textTheme.bodyMedium ?? TextStyle(fontSize: 14.0);
         break;

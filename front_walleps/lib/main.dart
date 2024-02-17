@@ -25,7 +25,6 @@ class MyApp extends StatelessWidget {
         '/dashboard': (context) => DashboardScreen(),
         '/planner': (context) => PlannerScreen(),
         '/profile': (context) => ProfileScreen(),
-        '/schedule': (context) => ScheduleScreen(),
       },
     );
   }

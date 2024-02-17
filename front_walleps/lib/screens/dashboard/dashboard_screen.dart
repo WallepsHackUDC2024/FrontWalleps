@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../theme/themes.dart'; // Verifica la correcta ruta de importación
-import '../../widgets/Button.dart';
+import '../../widgets/ButtonWidget.dart';
 import '../../widgets/plot.dart'; // Verifica la correcta ruta de importación
-import '../../widgets/AddCard.dart' as AddCard;
-import '../../widgets/Card.dart';
+import '../../widgets/AddCardWidget.dart' as AddCard;
+import '../../widgets/CardWidget.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
