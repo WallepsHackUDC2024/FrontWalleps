@@ -5,64 +5,70 @@ class WeeklySchedule extends StatelessWidget {
   final List<DeviceSchedule> schedule;
   final int homeHours;
   final int homeDuration;
-  WeeklySchedule(
-      {super.key,
-      required this.schedule,
-      required this.homeHours,
-      required this.homeDuration});
 
-  // Los nombres de los días para los encabezados de la tabla
-  final List<String> daysOfWeek = [
-    "",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday"
-  ];
+  WeeklySchedule({
+    super.key,
+    required this.schedule,
+    required this.homeHours,
+    required this.homeDuration,
+  });
+
+  List<List<String?>> _distributeDevicesUniformly() {
+    List<List<String?>> matrix =
+        List.generate(7, (_) => List.generate(homeDuration, (_) => null));
+    List<int> hours = List.generate(homeDuration, (i) => (homeHours + i) % 24);
+
+    // Para cada dispositivo en la programación
+    for (var device in schedule) {
+      int assignments = 0;
+      int dayIndex = 0;
+      // Trata de distribuir uniformemente las tareas durante los días disponibles
+      while (assignments < device.timesWeek && dayIndex < 7) {
+        int hourIndex = hours.indexOf(device.time);
+        if (hourIndex != -1) {
+          // Si la hora está dentro del rango a mostrar
+          // Encuentra el próximo día disponible para esta tarea
+          while (matrix[dayIndex][hourIndex] != null && dayIndex < 7 - 1) {
+            dayIndex++;
+          }
+          if (matrix[dayIndex][hourIndex] == null) {
+            // Si el día está libre en esa hora
+            matrix[dayIndex][hourIndex] = device.device;
+            assignments++;
+          }
+        }
+        dayIndex = (dayIndex + 2) %
+            7; // Salta un día para distribuir las tareas (ajusta este valor para cambiar la distribución)
+      }
+    }
+    return matrix;
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Calculamos el rango de horas a mostrar
-    List<int> displayHours =
-        List.generate(homeDuration, (i) => (homeHours + i) % 24);
-
-    // Matriz para representar la programación en la tabla, ajustada a las horas de interés
-    List<List<String?>> scheduleMatrix =
-        List.generate(8, (_) => List.generate(homeDuration, (_) => null));
-
-    // Llenamos la matriz con la programación de los dispositivos
-    for (var deviceSchedule in schedule) {
-      for (int i = 0; i < deviceSchedule.timesWeek && i < 7; i++) {
-        int timeIndex = displayHours.indexOf(deviceSchedule.time);
-        if (timeIndex != -1) {
-          // Si la hora del dispositivo está dentro del rango a mostrar
-          scheduleMatrix[i + 1][timeIndex] = deviceSchedule.device;
-        }
-      }
-    }
+    List<List<String?>> scheduleMatrix = _distributeDevicesUniformly();
 
     return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: DataTable(
-          columns:
-              daysOfWeek.map((day) => DataColumn(label: Text(day))).toList(),
-          rows: List<DataRow>.generate(
-            homeDuration,
-            (index) => DataRow(
-              cells: List<DataCell>.generate(
-                8, // 7 días de la semana + 1 para las horas
-                (dayIndex) => DataCell(
-                  Text(dayIndex == 0
-                      ? "${displayHours[index]}:00"
-                      : scheduleMatrix[dayIndex][index] ?? ""),
+      child: DataTable(
+        columns: [
+          "Hours",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ].map((day) => DataColumn(label: Text(day))).toList(),
+        rows: List.generate(
+          homeDuration,
+          (index) => DataRow(
+            cells: [DataCell(Text("${(homeHours + index) % 24}:00"))] +
+                List.generate(
+                  7,
+                  (dayIndex) =>
+                      DataCell(Text(scheduleMatrix[dayIndex][index] ?? "")),
                 ),
-              ),
-            ),
           ),
         ),
       ),

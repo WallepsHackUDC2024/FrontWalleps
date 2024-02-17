@@ -5,9 +5,9 @@ class User {
   final String email;
   final String? image; // Opcional, podría ser null
   final bool isImageUrl;
-  final int power;
   final int home_hours;
   final int home_duration;
+  final bool is_sections;
 
   User({
     required this.id,
@@ -16,9 +16,9 @@ class User {
     required this.email,
     this.image,
     required this.isImageUrl,
-    required this.power,
     required this.home_hours,
     required this.home_duration,
+    required this.is_sections,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -29,9 +29,9 @@ class User {
       email: json['email'],
       image: json['image'],
       isImageUrl: json['is_image_url'],
-      power: json['power'],
       home_hours: json['home_hours'],
       home_duration: json['home_duration'],
+      is_sections: json['is_sections'],
     );
   }
 
@@ -43,9 +43,9 @@ class User {
       'email': email,
       'image': image,
       'is_image_url': isImageUrl,
-      'power': power,
       'home_hours': home_hours,
       'home_duration': home_duration,
+      'is_sections': is_sections,
     };
   }
 }
