@@ -3,6 +3,7 @@ import 'package:front_walleps/screens/dashboard/dashboard_screen.dart';
 import 'package:front_walleps/theme/themes.dart';
 
 import 'package:front_walleps/screens/planner/planner_screen.dart';
+import 'package:front_walleps/screens/profile/profile_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/dashboard': (context) => DashboardScreen(),
         '/planner': (context) => PlannerScreen(),
+        '/profile' : (context) => ProfileScreen(),
       },
     );
   }

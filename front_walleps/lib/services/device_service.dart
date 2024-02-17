@@ -5,7 +5,7 @@ import 'dart:developer';
 
 class DeviceService {
   final String baseUrl =
-      'http://localhost:8000/device'; // Cambia esto por la URL de tu API
+      'http://10.20.29.249:8000/device'; // Cambia esto por la URL de tu API
 
   Future<List<Device>> fetchDevices() async {
     final response = await http.get(Uri.parse('$baseUrl/all'));
@@ -66,6 +66,17 @@ class DeviceService {
 
     if (response.statusCode != 204) {
       throw Exception('Failed to delete device');
+    }
+  }
+
+  Future<List<Device>> getAllDevicesByUserId(int userId) async {
+    final response = await http.get(Uri.parse('$baseUrl/user/$userId'));
+
+    if (response.statusCode == 200) {
+      List<dynamic> devicesJson = json.decode(response.body);
+      return devicesJson.map((json) => Device.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load devices');
     }
   }
 }
