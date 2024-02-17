@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_walleps/theme/themes.dart';
 import '../models/device_scheduler.dart';
 
 class WeeklySchedule extends StatelessWidget {
@@ -67,7 +68,7 @@ class WeeklySchedule extends StatelessWidget {
                 List.generate(
                   7,
                   (dayIndex) =>
-                      DataCell(Text(scheduleMatrix[dayIndex][index] ?? "")),
+                      DataCell(Text(scheduleMatrix[dayIndex][index] ?? "", style: TextStyle(color: AppThemes.secondaryColor))),
                 ),
           ),
         ),

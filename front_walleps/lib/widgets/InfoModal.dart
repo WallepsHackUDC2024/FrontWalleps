@@ -18,8 +18,14 @@ class InfoModal extends StatelessWidget {
         .join(' ');
   }
 
-  IconData getIconForDevice(String deviceName) {
-    switch (deviceName) {
+  IconData getIconFromTitle(String title) {
+    switch (title) {
+      case 'Phone':
+        return Icons.phone;
+      case 'Electricity':
+        return Icons.lightbulb;
+      case 'Water Service':
+        return Icons.water_drop;
       case 'fridge':
         return Icons.kitchen;
       case 'dishwasher':
@@ -53,103 +59,105 @@ class InfoModal extends StatelessWidget {
         padding: EdgeInsets.all(32.0),
         width: MediaQuery.of(context).size.width * 0.6,
         height: MediaQuery.of(context).size.height * 0.6,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppThemes.secondaryColor,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Icon(
-                      getIconForDevice(device.device_name),
-                      size: 48.0,
-                      color: Theme.of(context).colorScheme.background,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppThemes.secondaryColor,
                     ),
-                  ),
-                ),
-                SizedBox(width: 16.0),
-                Text(parseTitle(device.device_name),
-                    style: Theme.of(context).textTheme.titleLarge),
-              ],
-            ),
-            SizedBox(height: 32.0),
-            Text('Brand: $device.brand',
-                style: Theme.of(context).textTheme.bodyLarge),
-            Text('Model: $device.model',
-                style: Theme.of(context).textTheme.bodyLarge),
-            SizedBox(height: 32.0),
-            Text(
-                'Weekly use: ${device.times_week} times, usually at ${device.daytime}h',
-                style: Theme.of(context).textTheme.bodyLarge),
-            Text('Use duration: ${device.duration}',
-                style: Theme.of(context).textTheme.bodyLarge),
-            SizedBox(height: 32.0),
-            Text('Efficiency: $device.efficiency',
-                style: Theme.of(context).textTheme.bodyLarge),
-            SizedBox(height: 32.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        AppThemes.tertiaryColor),
-                    minimumSize: MaterialStateProperty.all<Size>(Size(
-                        MediaQuery.of(context).size.width * 0.2,
-                        MediaQuery.of(context).size.height * 0.08)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Icon(
+                        getIconFromTitle(device.device_name),
+                        size: 48.0,
+                        color: Theme.of(context).colorScheme.background,
                       ),
                     ),
                   ),
-                  onPressed: () {
-                    _editDevice();
-                  },
-                  child: Row(
-                    children: [
-                      Icon(Icons.edit, color: AppThemes.whiteColor),
-                      SizedBox(width: 16.0),
-                      Text('Edit Device',
-                          style: Theme.of(context).textTheme.bodyLarge),
-                    ],
-                  ),
-                ),
-                SizedBox(width: 32.0),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(AppThemes.redColor),
-                    minimumSize: MaterialStateProperty.all<Size>(Size(
-                        MediaQuery.of(context).size.width * 0.2,
-                        MediaQuery.of(context).size.height * 0.08)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                  SizedBox(width: 16.0),
+                  Text(parseTitle(device.device_name),
+                      style: Theme.of(context).textTheme.titleLarge),
+                ],
+              ),
+              SizedBox(height: 32.0),
+              Text('Brand: $device.brand',
+                  style: Theme.of(context).textTheme.bodyLarge),
+              Text('Model: $device.model',
+                  style: Theme.of(context).textTheme.bodyLarge),
+              SizedBox(height: 32.0),
+              Text(
+                  'Weekly use: ${device.times_week} times, usually at ${device.daytime}h',
+                  style: Theme.of(context).textTheme.bodyLarge),
+              Text('Use duration: ${device.duration}',
+                  style: Theme.of(context).textTheme.bodyLarge),
+              SizedBox(height: 32.0),
+              Text('Efficiency: $device.efficiency',
+                  style: Theme.of(context).textTheme.bodyLarge),
+              SizedBox(height: 32.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          AppThemes.tertiaryColor),
+                      minimumSize: MaterialStateProperty.all<Size>(Size(
+                          MediaQuery.of(context).size.width * 0.2,
+                          MediaQuery.of(context).size.height * 0.08)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
                       ),
                     ),
+                    onPressed: () {
+                      _editDevice();
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.edit, color: AppThemes.whiteColor),
+                        SizedBox(width: 16.0),
+                        Text('Edit Device',
+                            style: Theme.of(context).textTheme.bodyLarge),
+                      ],
+                    ),
                   ),
-                  onPressed: () {
-                    _deleteDevice();
-                  },
-                  child: Row(
-                    children: [
-                      Icon(Icons.delete, color: AppThemes.whiteColor),
-                      SizedBox(width: 16.0),
-                      Text('Delete Device',
-                          style: Theme.of(context).textTheme.bodyLarge),
-                    ],
+                  SizedBox(width: 32.0),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(AppThemes.redColor),
+                      minimumSize: MaterialStateProperty.all<Size>(Size(
+                          MediaQuery.of(context).size.width * 0.2,
+                          MediaQuery.of(context).size.height * 0.08)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                    onPressed: () {
+                      _deleteDevice();
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.delete, color: AppThemes.whiteColor),
+                        SizedBox(width: 16.0),
+                        Text('Delete Device',
+                            style: Theme.of(context).textTheme.bodyLarge),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -43,11 +43,9 @@ class DashboardScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Text('Dashboard',
-              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
-        ),
+        centerTitle: true,
+        title: Text('Dashboard',
+            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
         backgroundColor: AppThemes.primaryColor,
       ),
       body: Row(

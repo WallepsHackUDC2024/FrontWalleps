@@ -38,6 +38,7 @@ class PlannerScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Planner',
             style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
         backgroundColor: AppThemes.primaryColor,
@@ -105,7 +106,7 @@ class PlannerScreen extends StatelessWidget {
                             size: CardSize.small,
                             color: CardColor.secondary,
                             iconData: Icons
-                                .local_laundry_service, //TODO: Change to device icon
+                                .device_unknown,
                             title: device.device_name,
                             subtitle: 'ID: ${device.id}',
                             onPressed: () {

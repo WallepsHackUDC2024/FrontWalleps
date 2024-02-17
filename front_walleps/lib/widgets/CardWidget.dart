@@ -39,8 +39,14 @@ class CardWidget extends StatelessWidget {
     return title.split('_').map((word) => word[0].toUpperCase() + word.substring(1)).join(' ');
   }
 
-    IconData getIconForDevice(String deviceName) {
-    switch (deviceName) {
+  IconData getIconFromTitle(String title) {
+    switch (title) {
+      case 'Phone':
+        return Icons.phone;
+      case 'Electricity':
+        return Icons.lightbulb;
+      case 'Water Service':
+        return Icons.water_drop;
       case 'fridge':
         return Icons.kitchen;
       case 'dishwasher':
@@ -152,7 +158,7 @@ class CardWidget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Icon(
-                        getIconForDevice(title),
+                        getIconFromTitle(title),
                         size: 0.12 * height,
                         color: Theme.of(context).colorScheme.background,
                       ),
