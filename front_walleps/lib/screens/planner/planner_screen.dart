@@ -11,6 +11,8 @@ class PlannerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int demoUserId = 1;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Planner'),
@@ -19,7 +21,7 @@ class PlannerScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FutureBuilder<List<Device>>(
-          future: deviceService.fetchDevices(),
+          future: deviceService.getAllDevicesByUserId(demoUserId),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
