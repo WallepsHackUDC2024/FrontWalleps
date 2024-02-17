@@ -28,7 +28,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/dashboard': (context) => DashboardScreen(),
         '/planner': (context) => PlannerScreen(),
-        '/profile' : (context) => ProfileScreen(),
+        '/profile': (context) => ProfileScreen(),
+        '/schedule': (context) => ScheduleScreen(),
       },
     );
   }

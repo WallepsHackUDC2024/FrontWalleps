@@ -5,7 +5,8 @@ import 'dart:developer';
 import '../models/device_scheduler.dart';
 
 class UserService {
-  final String baseUrl = "http://10.20.29.249:8000/user"; // Ajusta a la URL de tu API
+  final String baseUrl =
+      "http://10.20.29.249:8000/user"; // Ajusta a la URL de tu API
 
   Future<List<User>> getUsers() async {
     final response = await http.get(Uri.parse('$baseUrl/all'));
@@ -22,7 +23,6 @@ class UserService {
     final response = await http.get(Uri.parse('$baseUrl/$userId'));
 
     if (response.statusCode == 200) {
-      print(response.body);
       return User.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to load user');
@@ -63,8 +63,10 @@ class UserService {
     return response.statusCode == 200;
   }
 
-  Future<List<DeviceSchedule>> getSchedulerByUserId(int userId) async {
-    final response = await http.get(Uri.parse('$baseUrl/$userId/schedule'));
+  Future<List<DeviceSchedule>> getSchedulerByUserId(
+      int userId, bool sections) async {
+    final response =
+        await http.get(Uri.parse('$baseUrl/scheduler/$userId/$sections'));
 
     if (response.statusCode == 200) {
       List<dynamic> scheduleJson = jsonDecode(response.body);
