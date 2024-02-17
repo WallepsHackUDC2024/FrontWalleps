@@ -4,7 +4,8 @@ import 'package:front_walleps/theme/themes.dart';
 
 import 'package:front_walleps/screens/planner/planner_screen.dart';
 import 'package:front_walleps/screens/profile/profile_screen.dart';
-import 'package:front_walleps/screens/schedule/schedule_screen.dart';
+
+import 'screens/service/service_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/dashboard': (context) => DashboardScreen(),
         '/planner': (context) => PlannerScreen(),
         '/profile': (context) => ProfileScreen(),
+        '/service': (context) => ServiceScreen(),
       },
     );
   }
