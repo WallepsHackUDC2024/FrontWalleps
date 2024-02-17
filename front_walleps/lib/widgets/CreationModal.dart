@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:front_walleps/theme/themes.dart';
@@ -25,6 +26,12 @@ class CreationModal extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               SizedBox(height: 32.0),
+              Icon(
+                Icons.create,
+                size: 32.0,
+                color: AppThemes.secondaryColor,
+              ),
+              SizedBox(height: 8.0),
               Row(
                 children: [
                   Text(
@@ -33,7 +40,25 @@ class CreationModal extends StatelessWidget {
                   ),
                   SizedBox(width: 8.0),
                   Expanded(
-                    child: TextFormField(),
+                    child: DropdownButtonFormField<String>(
+                      items: <String>[
+                        'fridge',
+                        'dishwasher',
+                        'washing_machine',
+                        'electric_stove',
+                        'electric_water_heater',
+                        'electric_heating_system'
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value,
+                              style: Theme.of(context).textTheme.bodyLarge),
+                        );
+                      }).toList(),
+                      onChanged: (String? value) {
+                        //TODO: Lógica para guardar el valor seleccionado
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -48,7 +73,7 @@ class CreationModal extends StatelessWidget {
                   Expanded(
                     child: TextFormField(),
                   ),
-                  SizedBox(height: 32.0),
+                  SizedBox(width: 32.0),
                   Text(
                     'Model:',
                     style: Theme.of(context).textTheme.bodyLarge,
@@ -59,7 +84,38 @@ class CreationModal extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 48.0),
+              SizedBox(height: 16.0),
+              Row(
+                children: [
+                  Text(
+                    'Efficiency:',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  SizedBox(width: 8.0),
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      items: <String>['A', 'B', 'C', 'D', 'E', 'F', 'G']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value,
+                              style: Theme.of(context).textTheme.bodyLarge),
+                        );
+                      }).toList(),
+                      onChanged: (String? value) {
+                        //TODO: Lógica para guardar el valor seleccionado
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 32.0),
+              Icon(
+                Icons.alarm,
+                size: 32.0,
+                color: AppThemes.secondaryColor,
+              ),
+              SizedBox(height: 8.0),
               Row(
                 children: [
                   Text(
@@ -105,25 +161,26 @@ class CreationModal extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 16.0),
-              Row(
-                children: [
-                  Text(
-                    'Efficiency:',
-                    style: Theme.of(context).textTheme.bodyLarge,
+              SizedBox(height: 56.0),
+              Center(
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(AppThemes.tertiaryColor),
+                    minimumSize: MaterialStateProperty.all<Size>(Size(
+                        MediaQuery.of(context).size.width * 0.3,
+                        MediaQuery.of(context).size.height * 0.08)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(8.0),
+                      ),
+                    ),
                   ),
-                  SizedBox(width: 8.0),
-                  Expanded(
-                    child: TextFormField(),
-                  ),
-                ],
-              ),
-              SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: () {
-                  // Lógica para guardar el nuevo dispositivo
-                },
-                child: Text('Create Device'),
+                  onPressed: () {
+                    // Lógica para guardar el nuevo dispositivo
+                  },
+                  child: Text('Add Device', style: Theme.of(context).textTheme.bodyLarge),
+                ),
               ),
             ],
           ),

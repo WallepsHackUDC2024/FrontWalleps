@@ -104,7 +104,8 @@ class PlannerScreen extends StatelessWidget {
                           CardWidget(
                             size: CardSize.small,
                             color: CardColor.secondary,
-                            iconData: Icons.local_laundry_service, //TODO: Change to device icon
+                            iconData: Icons
+                                .local_laundry_service, //TODO: Change to device icon
                             title: device.device_name,
                             subtitle: 'ID: ${device.id}',
                             onPressed: () {
@@ -130,7 +131,28 @@ class PlannerScreen extends StatelessWidget {
                   //TODO: Add time at home widget
                   SizedBox(height: 32),
                   //TODO: Change button style
-                  ElevatedButton(onPressed: _showPlanner(), child: Text('Create Schedule'))
+                  Center(
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            AppThemes.tertiaryColor),
+                        minimumSize: MaterialStateProperty.all<Size>(Size(
+                            MediaQuery.of(context).size.width * 0.3,
+                            MediaQuery.of(context).size.height * 0.08)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        _showPlanner();
+                      },
+                      child: Text('Create Schedule',
+                          style: Theme.of(context).textTheme.bodyLarge),
+                    ),
+                  ),
                 ],
               ),
             );
